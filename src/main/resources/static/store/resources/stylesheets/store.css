@@ -1,0 +1,107 @@
+/* html, CSS 파일의 간격 조정(margin, padding 등)은 기호에 알맞게 설정하였다. */
+@charset "UTF-8"; /* 가맹점 조회 페이지 CSS 디자인 파일 */
+
+body { /* store.css 파일을 첨부하는 모든 html 파일의 body */
+    margin: 0; /* 'margin: 0'으로 설정하여 홈 페이지 화면에 디자인이 딱 맞춰 들어가게끔 설정해준다. */
+}
+
+.introduce-store { /* 매장 조회 페이지의 머리글을 담은 div 디자인 설정 */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬, 왼쪽 정렬을 해준다. */
+    align-items: center;
+    justify-content: left;
+    color: white; /* 해당 div 안의 글자 색깔은 흰색으로 해주고 */
+    font-size: 1.3em; /* 글자 크기는 1.3em으로 설정해준다. */
+    font-weight: 450; /* 글자의 진한 강도는 450으로 설정해준다. */
+    width: 100%; /* 가로 길이를 해당 칸의 전체로 잡는다. */
+}
+
+.search-whole-screen { /* 가맹점 목록과 하나의 가맹 지점 약도를 표시하는 div 디자인 설정 */
+    margin-top: 15px;
+
+    /* 수평 중앙 정렬을 해준다. */
+    margin-left: auto;
+    margin-right: auto;
+    width: 1400px; /* 가로 길이를 1400px로 잡는다. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    display: flex; /* flex 설정을 하고 */
+    align-items: center; /* 자식 div 2개를 수직 중앙 정렬을 해준다. */
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+}
+
+.search-result { /* 가맹점 조회 결과 목록을 표시하는 div 디자인 설정 */
+    float: left; /* 왼쪽 구석부터 해당 부모 div의 자식 div들 순서대로 위치하도록 설정을 해준다. */
+    width: 435px; /* 가로 길이를 435px로 설정하고 */
+    height: 670px; /* 세로 길이를 670px로 설정한다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬을 해주고 왼쪽 시작점부터 순서대로 정렬하도록 설정한다. */
+    align-items: center;
+    justify-content: flex-start;
+
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    overflow-x: hidden; /* 가로축에는 부모 요소보다 세로 길이를 초과하는 부분을 감추고 */
+    overflow-y: scroll; /* 세로축에는 스크롤 막대기를 내려서 밑의 div를 계속 볼 수 있도록 스크롤 막대기를 설정해준다. */
+    margin: 0 auto 15px; /* 수평 중앙 정렬을 해주고 위에서 15px만큼 간격 조절을 하였다. */
+    line-height: 6px; /* 가맹점 이름과 주소 글 사이의 간격은 6px로 설정하였다. */
+}
+
+/* 각각의 가맹점 div 중에서 클릭한 div, 클릭하지 않은 div 디자인 설정 */
+.search-window-non-clicked, .search-window-clicked {
+    width: 415px; /* 가로 길이를 415px로 설정하고 */
+    height: 90px; /* 세로 길이를 90px로 설정하고. */
+    margin: 0; /* 수평 중앙 정렬을 해준다 */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: left;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    border: 1px solid black; /* 경계선은 검정색으로 1px 두께로 설정한다. */
+}
+
+.search-window-clicked { /* 각각의 가맹점 div 중에서 클릭한 div 디자인 추가 설정 */
+    background-color: RGB(200, 200, 200); /* 배경 색깔을 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.search-window-non-clicked { /* 각각의 가맹점 div 중에서 클릭하지 않은 div 디자인 추가 설정 */
+    background-color: RGB(230, 230, 230); /* 배경 색깔을 연한 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.store-name { /* 각각의 가맹점 이름 글 디자인 설정 */
+    font-size: 1.5em; /* 글자 크기를 1.5em으로 설정하고 */
+    font-weight: bold; /* 글자를 진하게 설정한다. */
+}
+
+.search-image { /* 가맹점 조회 결과 목록을 표시하는 div 옆의 이미지를 표시하는 div 디자인 설정 */
+    float: left; /* 왼쪽 구석부터 해당 부모 div의 자식 div들 순서대로 위치하도록 설정을 해준다. (해당 div는 순서가 두번째이므로 목록 옆에 배치된다.) */
+    display: flex; /* flex 설정을 하고 */
+    align-items: stretch; /* 위에서부터 자식 내용이 차례로 표시되도록 설정해주고 */
+    justify-content: flex-start; /* 왼쪽 구석에서부터 자식 내용이 차례로 표시되도록 설정해준다. */
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    width: auto; /* 가로는 자식 요소의 가로 길이와 간격의 가로 길이의 합으로 자동 배치해준다. */
+    height: 600px; /* 세로 길이는 600px로 배치한다. */
+}
+
+.search-image > p { /* 이미지 표시 div 안의 해당 가맹점 이름 글 디자인 설정 */
+    width: 100%; /* 가로 길이는 부모 div 길이의 전체로 설정한다. */
+    font-size: 1.5em; /* 글자 크기를 1.5em으로 설정해주고 */
+    text-align: center; /* p 박스 안의 가맹점 이름 글을 중앙으로 정렬해준다. */
+    margin-left: -20px;
+    margin-top: -37px;
+    padding-bottom: 7px;
+}
+
+.search-whole-screen > .search-image > img { /* 이미지 표시 div 안의 해당 가맹점 이미지 크기, 간격 설정 */
+    margin-top: -24px;
+    margin-left: -47px;
+    width: 870px; /* 가로 길이는 870px로 설정해주고 */
+    height: 600px; /* 세로 길이는 600px로 설정해준다. */
+}

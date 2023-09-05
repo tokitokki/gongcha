@@ -1,0 +1,222 @@
+/* html, CSS 파일의 간격 조정(margin, padding 등)은 기호에 알맞게 설정하였다. */
+@charset "UTF-8"; /* 메뉴 조회 페이지 CSS 디자인 파일 */
+
+body { /* menu.css 파일을 첨부하는 모든 html 파일의 body */
+    margin: 0; /* 'margin: 0'으로 설정하여 홈 페이지 화면에 디자인이 딱 맞춰 들어가게끔 설정해준다. */
+    transform: rotate(.001deg); /* 화면 떨림을 어느 정도 방지하기 위해 transform을 설정하였다. */
+}
+
+html { /* menu.css 파일을 첨부하는 모든 html 파일 */
+    overflow: auto; /* 부모 요소의 길이 규격대로 자식 요소의 길이를 제한해준다. */
+    height: 100%; /* menu.css 파일을 첨부하는 페이지의 높이를 모든 div 세로 길이와 */
+}
+
+.menu-type { /* menu.css 파일을 첨부하는 모든 html 파일의 음식 메뉴 클릭 창 */
+    font-size: 1.35em; /* 글자 크기는 1.35em으로 하고 */
+    font-weight: 200; /* 글자의 진한 강도는 200으로 설정해준다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+
+    /* 푸터의 저작권 글의 가로 길이, 세로 길이를 마우스로 변환시켜도 글의 크기가 고정되도록 해준다 */
+    flex: none;
+}
+
+/* menu.css 파일을 첨부하는 모든 html 파일의 음식 메뉴 클릭 창의 링크 */
+.menu-type > a {
+    text-decoration: none; /* 마우스를 대거나 클릭활 때 밑줄 효과를 없애고 */
+    color: black; /* 글자를 검정색으로 설정하였다. */
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+/* menu.css 파일을 첨부하는 모든 html 파일의 음식 메뉴 클릭 링크 안의 링크가 걸려진 모든 p 박스 글들은 */
+.menu-type > a > p {
+    display: flex; /* flex 설정을 하고 */
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+}
+
+.introduce-beverage { /* 카페 음료 관련 페이지의 머리글을 담은 div 디자인 설정 */
+    margin: 0 auto; /* 수평 중앙으로 정렬하고 */
+    text-align: left; /* 글들은 p 박스 안에서 왼쪽에 위치하도록 설정한다. */
+    padding-left: 15px;
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: RGB(102, 0, 0); /* 배경 색깔을 갈색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    width: 742px; /* 가로 길이를 742px로 설정한다. (html 파일에서 세로 길이를 각각 250px로 설정해 놓았다.) */
+    padding-top: 147px;
+    padding-bottom: 35px;
+}
+
+hr { /* 수평선의 가로 길이를 페이지 창에서 조절한 가로 길이의 96%의 비율로 중앙 정렬하여 지정 */
+    width: 96%;
+}
+
+.introduce-bingsu { /* 빙수 관련 페이지의 머리글을 담은 div 디자인 설정 */
+    margin-top: -45px;
+
+    /* 수평 중앙으로 정렬해준다 */
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: left; /* 글들은 p 박스 안에서 왼쪽에 위치하도록 설정한다. */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: RGB(224, 255, 255); /* 글자 색깔을 하늘색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    width: 752px; /* 가로는 752px로 하고 */
+    height: 280px; /* 세로는 280px로 설정한다. */
+}
+
+.introduce-dessert { /* 디저트 관련 페이지의 머리글을 담은 div 디자인 설정 */
+    margin-top: -45px;
+
+    /* 수평 중앙으로 정렬해준다 */
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: left; /* 글들은 p 박스 안에서 왼쪽에 위치하도록 설정한다. */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 753px; /* 가로는 753px로 하고 */
+    height: 280px; /* 세로는 280px로 설정한다. */
+}
+
+.introduce-mug { /* 머그잔 관련 페이지의 머리글을 담은 div 디자인 설정 */
+    margin-top: -45px;
+
+    /* 수평 중앙으로 정렬해준다 */
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: left; /* 글들은 p 박스 안에서 왼쪽에 위치하도록 설정한다. */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: RGB(240, 255, 240); /* 글자 색깔을 흰색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    width: 753px; /* 가로는 753px로 하고 */
+    height: 280px; /* 세로는 280px로 설정한다. */
+}
+
+.beverage { /* 카페 음료 관련 페이지의 머리글의 크기와 진한 강도 조정 */
+    font-size: 2.1em; /* 글자 크기는 2.1em으로 하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정해준다. */
+}
+
+.bingsu { /* 빙수 관련 페이지의 머리글의 크기와 간격, 진한 강도 조정 */
+    padding-top: 225px;
+    padding-left: 15px;
+    font-size: 2.1em; /* 글자 크기는 2.1em으로 하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정해준다. */
+}
+
+.dessert { /* 디저트 관련 페이지의 머리글의 크기와 간격, 진한 강도 조정 */
+    padding-top: 225px;
+    padding-left: 15px;
+    font-size: 2.1em; /* 글자 크기는 2.1em으로 하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정해준다. */
+    color: RGB(255, 255, 143); /* 글자 색깔을 노란색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.mug { /* 머그잔 관련 페이지의 머리글의 크기와 간격, 진한 강도 조정 */
+    padding-top: 225px;
+    padding-left: 15px;
+    font-size: 2.1em; /* 글자 크기는 2.1em으로 하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정해준다. */
+}
+
+.menu-align{ /* 카페음료 각종 종류의 메뉴 소개 페이지로 들어가는 링크 창 디자인 */
+    width: 100%; /* 가로 길이를 해당 칸의 전체로 잡고 */
+    text-align: center;  /* p 박스의 텍스트를 중앙으로 정렬한다. */
+    height: 60px; /* 세로 길이를 60px로 잡는다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+}
+
+.menu-align > a { /* 카페음료 각종 종류의 메뉴 소개 페이지로 들어가는 하이퍼링크 디자인 */
+    text-decoration: none; /* 마우스를 대거나 클릭활 때 밑줄 효과를 없애고 */
+    color: black; /* 글자를 검정색으로 설정하였다. */
+}
+
+.menu-align > a > p { /* 카페음료 각종 종류의 메뉴 소개 페이지 안의 p 박스 디자인 */
+
+    /* inline-block 설정을 해주면서 수직, 수평 중앙 정렬을 해준다. */
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4em; /* 글자 크기는 1.4em으로 하고 */
+    font-weight: 450; /* 글자의 진한 강도는 450으로 설정해준다. */
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.menu-align > a > p > img { /* 카페음료 각종 종류의 메뉴 소개 페이지 안의 p 박스에 있는 이미지(단추 아이콘) 크기 */
+    /* 이미지의 가로, 세로 크기를 17px로 지정한다. */
+    width: 17px;
+    height: 17px;
+}
+
+.menu-introduce { /* 해당 종류의 메뉴를 소개하는 div의 디자인 */
+    text-align: center; /* 텍스트 글은 수평으로 중앙 정렬하고 */
+
+    /* 가로, 세로는 자식 요소의 최대 길이(간격 포함)로 자동 배치해준다. */
+    width: auto;
+    height: auto;
+    display: flex; /* flex 설정을 하고 */
+
+    /* 텍스트 글 외에 다른 자식 요소들은 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+}
+
+.menu-introduce > p { /* 해당 종류의 메뉴를 소개하는 div 안의 제목글 디자인 */
+    text-align: center; /* 텍스트 글은 수평으로 중앙 정렬하고 */
+    width: 275px; /* 가로 길이는 275px로 설정한다. */
+    background-color: RGB(211, 211, 211); /* 배경 색깔을 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    color: RGB(153, 0, 0); /* 글자 색깔을 갈색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    font-size: 1.25em; /* 글자 크기는 1.25em으로 하고 */
+    font-weight: 450; /* 글자의 진한 강도는 450으로 설정해준다. */
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.menu-window { /* 해당 메뉴 div들을 직접 진열하는 div 디자인 */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치하고 */
+    flex-wrap: wrap; /* 줄바꿈 설정을 해준다. */
+}
+
+.menu { /* 메뉴 하나하나의 div 디자인 */
+    width: 250px; /* 가로는 250px로 하고 */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    margin: 15px;
+    display: flex; /* flex 설정을 하고 */
+
+    /* 텍스트 글 외에 다른 자식 요소들은 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치하고 */
+    border-bottom: 1px solid RGB(211, 211, 211); /* 각 div의 아래쪽에 회색 계열의 경계를 1px 두께만큼 설정해준다. */
+}

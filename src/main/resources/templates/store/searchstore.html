@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 가맹점 검색 페이지 -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 디자인은 th:href 경로에 설정한 store.css 파일 참조 -->
+  <link rel = "stylesheet" th:href="@{/store/resources/stylesheets/store.css}" type = "text/css">
+  <script th:href="@{/store/resources/scripts/jquery-3.6.0.min.js}"></script>
+  <title>매장 찾기</title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+  <!-- 공차 가맹점을 조회하는 머리글을 담은 div를 이미지를 추가해서 만든다. -->
+  <div class="introduce-store" th:style="'background-image:url('+ @{/store/resources/images/store_image.jpg} +');'">
+    <p style="margin: 110px 0 110px 20px;">
+      <span class="brand-story">STORE</span><br>매장을 조회해 보세요
+    </p>
+  </div>
+  <!-- 가나다순으로 나열된 공차 지점 목록과 지점이 어디에 위치해 있는지 설명하는 약도를 나타내는 이미지를 담는 div를 생성한다. -->
+  <div class="search-whole-screen">
+    <div class="search-result"> <!-- 공차 지점 목록을 세로로 나열한 결과를 담는 div -->
+      <div th:each="searchStore : ${searchStores}" th:object="${searchStore}">
+        <!-- 표시된 약도 이미지가 해당 지점일 때 표시되는 지점 주소 div
+        (해당 div를 클릭하면 그 지점의 약도가 오른쪽에 표시되는 페이지의 링크도 걸어준다.) -->
+        <div class="search-window-clicked" th:if="${searchStore.getIndex() == index}"
+           th:onclick="'location.href = \'' + @{'/store/search/' + *{getIndex()}} + '\''">
+          <p class="store-name" th:text="*{getStoreName()}"></p>
+          <p style="font-size: 0.73em;" th:text="*{getAddress()}"></p>
+        </div>
+
+        <!-- 표시된 약도 이미지가 해당 지점이 아닐 때 표시되는 지점 주소 div
+        (해당 div를 클릭하면 그 지점의 약도가 오른쪽에 표시되는 페이지의 링크도 걸어준다.) -->
+        <div class="search-window-non-clicked" th:if="${searchStore.getIndex() != index}"
+           th:onclick="'location.href = \'' + @{'/store/search/' + *{getIndex()}} + '\''">
+           <p class="store-name" th:text="*{getStoreName()}"></p>
+           <p style="font-size: 0.73em;" th:text="*{getAddress()}"></p> <!-- 주소 글자 크기를 0.73em으로 설정하고 표시한다. -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 약도 이미지가 표시하는 지점 이름과 약도 이미지를 보여주는 div -->
+    <div class="search-image" th:each="searchStore : ${searchStores}"
+        th:object="${searchStore}" th:if="${searchStore.getIndex() == index}">
+      <p>공차 <span th:text="${searchStore.getStoreName()}"></span></p> <!-- 해당 지점 이름 -->
+
+      <!-- 해당 지점 순번이 1번부터 46번까지일 때 이미지 경로 -->
+      <img th:if="${searchStore.getIndex() >= 1 && searchStore.getIndex() <= 46}"
+        th:src="@{'/store/resources/images/daegu/' + *{getMapImage()}}">
+
+      <!-- 해당 지점 순번이 47번부터 74번까지일 때 이미지 경로 -->
+      <img th:if="${searchStore.getIndex() >= 47 && searchStore.getIndex() <= 74}"
+        th:src="@{'/store/resources/images/daejeon/' + *{getMapImage()}}">
+
+      <!-- 해당 지점 순번이 75번부터 112번까지일 때 이미지 경로 -->
+      <img th:if="${searchStore.getIndex() >= 75 && searchStore.getIndex() <= 112}"
+        th:src="@{'/store/resources/images/busan/' + *{getMapImage()}}">
+
+      <!-- 해당 지점 순번이 113번부터 129번까지일 때 이미지 경로 -->
+      <img th:if="${searchStore.getIndex() >= 113 && searchStore.getIndex() <= 129}"
+        th:src="@{'/store/resources/images/ulsan/' + *{getMapImage()}}">
+
+      <!-- 해당 지점 순번이 130번부터 158번까지일 때 이미지 경로 -->
+      <img th:if="${searchStore.getIndex() >= 130 && searchStore.getIndex() <= 158}"
+        th:src="@{'/store/resources/images/gwangju/' + *{getMapImage()}}">
+    </div>
+  </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

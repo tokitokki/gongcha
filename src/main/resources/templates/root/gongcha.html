@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 메인 페이지 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 디자인은 th:href 경로에 설정한 index.css 파일 참조 -->
+    <link rel = "stylesheet" th:href="@{/resources/stylesheets/index.css}" type = "text/css">
+    <!-- 제목은 RootController에서 Model로 templateTitle 이름으로 전송시킨 변수 "공차"로 설정한다. -->
+    <title th:text="${templateTitle}"></title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+    <!-- 공차 매장을 소개하는 머리글을 담은 div를 이미지를 추가해서 만든다. -->
+    <div class="introduce-brand" th:style="'background-image:url('+ @{/root/resources/images/tea_table.jpg} +');'">
+        <p style="margin: 110px 20px 110px 0;">
+            <span class="brand-story">BRAND STORY</span><br>브랜드 소개
+        </p>
+    </div>
+    <div class="tea-content">
+        <p class="title">황실에 바치는 차(茶), 공차를 소개합니다.</p> <!-- 공차 소개글 주제 -->
+        <p style="margin-left: 10px; margin-right: 10px;">貢茶는 바칠 공, 차 차의 뜻으로 중국 황실에서만 맛 볼 수 있던 프리미엄 퀄리티의 차(茶)를<br> <!-- 공차 소개 내용 -->
+            바친다는 의미를 지니고 있습니다. 대만은 차나무가 자라기에 최적의 기온과 기상조건을 가지고 있어<br>
+            중국의 황실에 최고급 차 잎을 생산해낼 수 있었습니다.</p>
+        <p class="brown-color" style="margin-left: 10px;">중국 황실에 진상하던 대만의 프리미엄 잎차를 신선하게 우려낸 차, 그것이 바로 공차랍니다.</p>
+    </div>
+    <div class="promise"> <!-- 공차 카페가 맹세한 공약들을 그림과 글로 담은 내용을 가로 3칸으로 담는 div로 만든다. -->
+        <div class = "promise-card"> <!-- 하나하나의 원료를 원칙을 지켜서 사용한다는 내용 -->
+            <img th:src="@{/root/resources/images/quality.png}">
+            <p class="brown-color big-font-size">Quality</p>
+            <p style="font-size: 1.1em;"><b>엄격을 더하다</b></p>
+            <p>잎차 하나 원료 하나 원칙을 지킵니다.</p>
+        </div>
+        <div class = "promise-card"> <!-- 음식을 만들 때 정직하게 만든다는 내용 -->
+            <img th:src="@{/root/resources/images/integrity.png}">
+            <p class="brown-color big-font-size">Integrity</p>
+            <p style="font-size: 1.1em;"><b>정직을 더하다</b></p>
+            <p>숙련된 티마스터가 정성을 다해 만듭니다.</p>
+        </div>
+        <div class = "promise-card"> <!-- 항상 같은 맛이 아닌 새로운 맛을 창조한다는 내용 -->
+            <img th:src="@{/root/resources/images/innovation.png}">
+            <p class="brown-color big-font-size">Innovation</p>
+            <p style="font-size: 1.1em;"><b>새로움을 더하다</b></p>
+            <p>고정관념에 갇히지 않고 끊임없이<br>
+                새로운 맛을 창조합니다.</p>
+        </div>
+    </div>
+    <div class="promise" style="margin-bottom: 15px;">  <!-- 공차 카페가 맹세한 공약들을 그림과 글로 담은 내용을 가로 2칸으로 담는 div로 만든다. -->
+        <div class = "promise-card"> <!-- 모든 손님들을 친절하게 대한다는 내용 -->
+            <img th:src="@{/root/resources/images/respect.png}">
+            <p class="brown-color big-font-size">Respect</p>
+            <p style="font-size: 1.1em;"><b>존중을 더하다</b></p>
+            <p>모든 사람에게 진심을 다합니다.</p>
+        </div>
+        <div class = "promise-card"> <!-- 공차 특유의 맛의 조화로 손님들에게 감동을 부여한다는 내용 -->
+            <img th:src="@{/root/resources/images/empathy.png}">
+            <p class="brown-color big-font-size">Empathy</p>
+            <p style="font-size: 1.1em;"><b>감동을 더하다</b></p>
+            <p>따뜻한 마음과 밝은 세상을 만듭니다.</p>
+        </div>
+    </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

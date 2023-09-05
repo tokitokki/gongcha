@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 공지사항, 이벤트 관련 쿼리를 담는 Mapper -->
+<mapper namespace="mydogcherry.kr.gongcha.mappers.IBoardMapper">
+
+    <!-- 공지사항 전체 글을 조회하는 쿼리문 생성 -->
+    <select id="notices" resultType="mydogcherry.kr.gongcha.entities.board.NoticeEntity">
+        SELECT `index`      AS `index`,
+               `title`      AS `title`,
+               `created_at` AS `createdAt`
+        FROM `board`.`notices`
+    </select>
+
+    <!-- 공지사항 글 중 하나를 클릭했을 때 해당 글을 조회하는 쿼리문 생성 -->
+    <select id="choiceNotice" resultType="mydogcherry.kr.gongcha.entities.board.NoticeEntity">
+        SELECT `index` AS `index`,
+               `title` AS `title`
+        FROM `board`.`notices`
+        WHERE `index` = #{index}
+    </select>
+
+    <!-- 이벤트 전체 글을 조회하는 쿼리문 생성 -->
+    <select id="events" resultType="mydogcherry.kr.gongcha.entities.board.EventEntity">
+        SELECT `index`       AS `index`,
+               `title`       AS `title`,
+               `start_at`    AS `startAt`,
+               `end_at`      AS `endAt`,
+               `event_image` AS `eventImage`
+        FROM `board`.`events`
+    </select>
+
+    <!-- 이벤트 글 중 하나를 클릭했을 때 해당 글을 조회하는 쿼리문 생성 -->
+    <select id="choiceEvent" resultType="mydogcherry.kr.gongcha.entities.board.EventEntity">
+        SELECT `index`    AS `index`,
+               `title`    AS `title`,
+               `start_at` AS `startAt`,
+               `end_at`   AS `endAt`
+        FROM `board`.`events`
+        WHERE `index` = #{index}
+    </select>
+</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 카페음료 쥬얼리 음료 메뉴 소개 페이지 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 디자인은 th:href 경로에 설정한 menu.css 파일 참조 -->
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menu.css}" type = "text/css">
+    <title>쥬얼리 음료</title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+    <div class="menu-type"> <!-- 각 종류의 메뉴 조회 페이지로 들어갈 수 있는 링크 창을 만들어준다. -->
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src="@{/menu/resources/images/beverage.png}" width="22" height="22">&nbsp;음료</p>
+        </a>|
+        <a th:href="@{/menu/bingsu}">
+            <p><img th:src="@{/menu/resources/images/bingsu.png}" width="22" height="22">&nbsp;빙수</p>
+        </a>|
+        <a th:href="@{/menu/dessert}">
+            <p><img th:src="@{/menu/resources/images/dessert.png}" width="22" height="22">&nbsp;디저트</p>
+        </a>|
+        <a th:href="@{/menu/mug}">
+            <p><img th:src="@{/menu/resources/images/mug.png}" width="22" height="22">&nbsp;머그잔</p>
+        </a>
+    </div>
+
+    <!-- 카페음료 중에 어떤 종류의 카페음료를 조회하는지 알려주는 창을 만든다.
+    해당 div 창의 배경은 음료수가 진열되어 있는 이미지를 첨부한다. -->
+    <div class="introduce-beverage"
+        th:style="'background-image:url('+ @{/menu/resources/images/beverage_background.PNG} +');'" height="250">
+        <p>
+            <span class = "beverage">음료</span>
+            <br>쥬얼리
+        </p>
+    </div>
+    <hr> <!-- 평행선을 그어주고 -->
+    <div class="menu-align"> <!-- 카페음료 종류 중 각종 종류 메뉴 소개 창으로 들어갈 수 있는 창을 만들어준다. -->
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;시즌 메뉴</p>
+        </a>
+        <a th:href="@{/menu/bestcombination}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;베스트 콤비네이션</p>
+        </a>
+        <a th:href="@{/menu/originaltea}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;오리지널 티</p>
+        </a>
+        <a th:href="@{/menu/milktea}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;밀크 티</p>
+        </a>
+    </div>
+    <div class="menu-align">
+        <a th:href="@{/menu/jewel}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;쥬얼리</p>
+        </a>
+        <a th:href="@{/menu/fruitmix}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;과일믹스</p>
+        </a>
+        <a th:href="@{/menu/smoothie}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;스무디</p>
+        </a>
+        <a th:href="@{/menu/coffee}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;커피</p>
+        </a>
+    </div>
+    <hr> <!-- 다 만들어주고 창 밑에 평행선을 한번 더 그어준다. -->
+    <div class="menu-introduce">
+        <p align="center">쥬얼리</p> <!-- 카페음료 중 쥬얼리 음료 종류임을 어필하고 -->
+        <div class="menu-window"> <!-- Model 기능을 써서 담은 쥬얼리 메뉴를 하나씩 정렬해준다. -->
+            <div class="menu" th:each="beverage : ${jewels}" th:object="${beverage}">
+                <!-- 클릭하면 카페 음료 메뉴 순번를 컨트롤러 주소에 입력해서 홈 페이지 주소가 생기도록 하이퍼링크를 만든다. -->
+                <a th:href="@{'/menu/jewel/' + *{getIndex()}}">
+                    <img th:src="@{'/menu/resources/images/jewel/' + *{getImageFile()}}"
+                    width="250" height="294">
+                </a> <!-- 해당 메뉴 이미지 첨부 -->
+                <p th:text="*{getMenu()}"></p> <!-- 이미지 밑에 메뉴 이름 표시 -->
+            </div>
+        </div>
+    </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

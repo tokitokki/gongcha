@@ -1,0 +1,207 @@
+/* html, CSS 파일의 간격 조정(margin, padding 등)은 기호에 알맞게 설정하였다. */
+@charset "UTF-8"; /* 공지사항, 이벤트 페이지 CSS 디자인 파일 */
+
+body { /* board.css 파일을 첨부하는 모든 html 파일의 body */
+    margin: 0; /* 'margin: 0'으로 설정하여 홈 페이지 화면에 디자인이 딱 맞춰 들어가게끔 설정해준다. */
+}
+
+.introduce-board { /* 공지사항 또는 이벤트 관련 페이지의 머리글을 담은 div 디자인 설정 */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬을 해주고 왼쪽으로 정렬한다. */
+    align-items: center;
+    justify-content: left;
+    color: white; /* 글자 색깔을 흰색으로 지정한다. */
+    font-size: 1.3em; /* 글자 크기는 1.3em으로 하고 */
+    font-weight: 450; /* 글자의 진한 강도는 450으로 설정해준다. */
+    width: 100%; /* 가로 길이를 해당 칸의 전체로 잡는다. */
+}
+
+/* 이벤트 메인 페이지 또는 공지사항 메인 페이지 클릭 창 디자인 설정 */
+.event-and-notice {
+    margin-top: 6px;
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬, 왼쪽 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+    font-size: 1.23em; /* 글자 크기를 1.23em으로 설정해주고 */
+    margin-bottom: -30px;
+}
+
+/* 이벤트 메인 페이지 중 해당 페이지 일 떼 표시되는 링크 div와 아닐 때의 링크 div 공통으로 설정하는 CSS */
+.not-choice-link, .choice-link {
+    text-align: center; /* 해당 div 안의 글들은 수평 중앙으로 정렬한다. */
+    margin: 2%;
+    width: 42%; /* 해당 칸의 42%만큼 가로 길이를 설정하고 */
+    height: 30px; /* 세로 길이는 30px로 설정한다. */
+}
+
+.not-choice-link { /* 해당 페이지가 아닐 떼 표시되는 링크 div는 */
+    border-bottom: 2px solid RGB(211, 211, 211); /* div 아래의 경계선을 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.choice-link { /* 해당 페이지일 떼 표시되는 링크 div는 */
+    color: darkred; /* 글자 색깔을 진한 빨간색으로 설정하고 */
+    border-bottom: 2px solid darkred; /* div 아래의 경계선을 진한 빨간색으로 설정한다. */
+}
+
+.event-texts { /* 이벤트 내용들을 소개하는 div 디자인 설정 */
+    background-color: RGB(253, 245, 230); /* 배경을 베이지색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    margin: 30px auto; /* 수평으로 중앙 정렬 한 다음, 위의 간격을 조정한다. */
+    padding: 20px;
+    width: 1256px; /* 가로 길이는 1256px로 설정한다. */
+    height: auto; /* 세로 길이는 자식 요소들의 세로 길이와 세로 간격 길이들의 합으로 자동 설정한다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬, 왼쪽 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+}
+
+.event-texts > a > img { /* 이벤트 내용들을 소개하는 div 안의 이미지 디자인 설정 */
+    border: 1px solid black; /* 해당 이미지의 경계선을 1px 두께의 검정색으로 설정한다. */
+}
+
+.event-content { /* 이벤트 내용들을 소개하는 div 안의 이벤트 내용 디자인 설정 */
+    margin-left: 15px;
+    width: 560px; /* 가로 길이는 560px로 설정하고. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 중앙 정렬, 왼쪽 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+}
+
+.event-title { /* 이벤트 내용들을 소개하는 이벤트 내용 div 안의 제목글 디자인 설정 */
+    font-size: 1.6em; /* 글자 크기를 1.23em으로 설정해주고 */
+    font-weight: bold; /* 글자를 진하게 표시한다. */
+}
+
+.event-link { /* 이미지를 클릭하는 것처럼 이벤트 세부 사항 페이지로 링크되는 텍스트 디자인 설정 */
+    text-decoration: underline; /* 텍스트에 항상 밑줄을 긋고 */
+    color: RGB(102, 51, 0); /* 글자 색깔을 갈색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.event-detail { /* 이벤트 세부 사항 페이지의 이벤트 제목과 날짜를 표시하는 div 디자인 설정 */
+    margin: 15px;
+    width: 99%; /* 가로 길이를 해당 칸의 99%로 설정하고 중앙으로 정렬한다. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    display: flex; /* flex 설정을 하고 */
+    align-items: stretch; /* 위에서부터 자식 내용이 차례로 표시되도록 설정해주고 */
+    justify-content: left; /* 왼쪽 구석으로 내용이 표시되도록 설정해준다. */
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    line-height: 7px; /* 이벤트 제목 글과 표시 날짜 간의 간격은 7px로 설정해준다. */
+    border-bottom: 1px solid black; /* 해당 div 밑의 경계선을 1px 두께의 검정색으로 설정한다. */
+}
+
+.event-detail-title { /* 이벤트 세부 사항 페이지의 이벤트 제목과 날짜를 표시하는 div 안의 이벤트 제목 디자인 설정 */
+    font-size: 1.76em; /* 글자 크기를 1.76em으로 설정해주고 */
+    font-weight: bold; /* 글자를 진하게 표시한다. */
+}
+
+.event-detail-image { /* 이벤트 세부 사항 페이지의 상세한 이벤트 내용을 표시하는 이미지를 담는 div 디자인 설정 */
+    width: 100%; /* 해당 div의 크기를 첨부하는 이미지의 크기 전체로 설정한다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직 정렬을 하면서 왼쪽 구석으로 내용이 표시되도록 설정해준다. */
+    align-items: center;
+    justify-content: left;
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+hr { /* 이벤트 세부 사항 페이지에 그어진 수평선 디자인 설정 */
+    background-color: RGB(211, 211, 211); /* 수평선 색깔을 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    border: 0; /* 수평선의 명암을 없애고 */
+    height: 1px;  /* 세로 길이를 1px로 설정한다. */
+}
+
+.notice-div { /* 공지사항 내용들을 소개하는 div 디자인 설정 */
+    margin: 15px;
+    width: 99%; /* 가로 길이를 해당 칸의 99%로 설정하고 중앙으로 정렬한다. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    display: flex; /* flex 설정을 하고 */
+    align-items: stretch; /* 위에서부터 자식 내용이 차례로 표시되도록 설정해주고 */
+    justify-content: center; /* 수평으로 중앙 정렬한다. */
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+    border-bottom: 1px solid black; /* 해당 div 밑의 경계선을 1px 두께의 검정색으로 설정한다. */
+}
+
+.notice-title { /* 각각의 공지사항 제목들을 표시하는 div 디자인 설정 */
+    margin-top: -6px;
+    font-size: 1.5em; /* 글자 크기를 1.5em으로 설정해주고 */
+    font-weight: bold; /* 글자를 진하게 표시한다. */
+}
+
+.notice-link { /* 공지사항 세부 내용 페이지로 링크되는 텍스트 디자인 설정 */
+    text-decoration: underline; /* 텍스트에 항상 밑줄을 긋고 */
+    color: RGB(102, 51, 0); /* 글자 색깔을 갈색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.notice-detail { /* 공지사항 세부 페이지의 공지사항 글 제목과 내용을 담은 div 디자인 설정 */
+    margin-left: 15px;
+    width: 99%; /* 가로 길이를 해당 칸의 99%로 설정하고 중앙으로 정렬한다. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+    display: flex; /* flex 설정을 하고 */
+    align-items: stretch; /* 위에서부터 자식 내용이 차례로 표시되도록 설정해주고 */
+    justify-content: left; /* 왼쪽 구석으로부터 정렬한다. */
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+    margin-bottom: 10px;
+    border-bottom: 1px solid RGB(211, 211, 211); /* 해당 div 밑의 경계선을 1px 두께의 회색 계열의 색상으로 RGB를 설정한다. */
+}
+
+.notice-detail-title { /* 공지사항 세부 페이지의 공지사항 글 제목과 내용을 담은 div 안의 글 제목 디자인 설정 */
+    padding-bottom: 20px;
+    border-bottom: 1px solid black; /* 해당 div 밑의 경계선을 1px 두께의 검은색으로 설정한다.. */
+    font-size: 1.5em; /* 글자 크기를 1.5em으로 설정해주고 */
+    font-weight: bold; /* 글자를 진하게 표시한다. */
+}
+
+table, tr, th, td { /* 공지사항 인덱스가 3번일 때 사용된 table과 그 안에 포함된 tr, th, td 디자인 설정 */
+    border-collapse: collapse; /* 경계선은 한 줄로 설정한다. */
+}
+
+th, td { /* 공지사항 인덱스가 3번일 때 사용된 table 안에 포함된 tr, td 디자인 추가 설정 */
+    text-align: center; /* 표 안의 글들은 수평 중앙으로 정렬한다. */
+    border: 1px solid black; /* 각 칸의 경계를 검은색으로 1px 두께만큼 설정한다. */
+    font-size: 0.8em; /* 글자 크기를 0.8em으로 설정해주고 */
+    font-weight: 0; /* 글자를 연하게 표시한다. */
+    padding: 5px;
+}
+
+.click-redirect { /* 이벤트 또는 공지사항 세부 페이지에서 각자의 목록으로 돌아가는 링크 div 디자인 설정 */
+    margin: 10px auto; /* 수평으로 중앙 정렬한 다음 위에 간격을 설정해준다. */
+    width: 300px; /* 가로 길이는 300px로 설정하고. */
+    padding: 15px;
+    text-align: center; /* 해당 div 안의 글은 수평 중앙으로 정렬한다. */
+    background-color: RGB(102, 0, 0); /* 배경 색깔을 갈색과 가깝게 RGB를 설정한다. */
+    color: white; /* 해당 div 안의 글자 색깔은 흰색으로 해주고 */
+    font-size: 1em; /* 글자 크기는 1em으로 설정해준 다음 */
+    font-weight: bold; /* 글자를 진하게 표시한다. */
+}
+
+@media(max-width: 1256px) { /* 이벤트 메인 페이지의 가로 길이가 1256px 이하일 때, 변동되는 디자인 */
+    .event-texts { /* 이벤트 내용들을 소개하는 div 디자인에서 */
+        margin: 35px auto; /* 간격이 조정되고 */
+        padding: 30px;
+        width: 800px; /* 가로 길이가 800px로 바뀐다. */
+        flex-direction: column; /* 자식 내용 순서대로 세로로 배치되도록 조정된다. */
+    }
+}

@@ -1,0 +1,161 @@
+/* html, CSS 파일의 간격 조정(margin, padding 등)은 기호에 알맞게 설정하였다. */
+@charset "UTF-8"; /* 헤더, 푸터, 메인 페이지 CSS 디자인 파일 */
+
+header, footer, body { /* 헤더, 푸터, 메인 페이지 전체에 */
+    transform: rotate(.001deg); /* 화면 떨림을 어느 정도 방지하기 위해 transform을 설정하였다. */
+    margin: 0; /* 'margin: 0'으로 설정하여 홈 페이지 화면에 디자인이 딱 맞춰 들어가게끔 설정해준다. */
+}
+
+header > div > a { /* 헤더에 각 페이지로 들어가는 하이퍼링크 디자인을 */
+    text-decoration: none; /* 마우스를 대거나 클릭활 때 밑줄 효과를 없애고 */
+    color: black; /* 글자를 검정색으로 설정하였다. */
+}
+
+footer { /* 푸터 창을 */
+    clear: both; /* 각 홈페이지 body 밑쪽에 설정되로록 한 칸 띄우기 위해 설정하였다 */
+}
+
+.row { /* div 안의 온갖 내용들이 가로로 정렬되도록 설정하는 CSS class */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: row; /* 자식 내용 순서대로 가로로 배치한다. */
+    margin-bottom: 5px;
+    height: auto; /* 세로는 자식 요소의 세로 길이와 간격의 세로 길이의 합으로 자동 배치해준다. */
+}
+
+.link { /* 헤더에 각 페이지로 들어가는 하이퍼링크 div 칸 디자인 설정 */
+    width: 100px; /* 가로는 100px로 */
+    height: 100px; /* 세로도 100px로 */
+    display: flex; /* flex 설정을 하고 */
+    font-size: 1.1em; /* 글자 크기는 1.1em으로 하고 */
+    font-weight: 300; /* 글자의 진한 강도는 300으로 설정해준다. */
+
+    /* 헤더에 각 페이지로 들어가는 하이퍼링크 div의 가로 길이, 세로 길이를 마우스로 변환시켜도 칸의 크기가 고정되도록 해준다 */
+    flex: none;
+
+    /* 해당 div 안의 글을 수직 정렬과 수평 정렬을 해준다.  */
+    align-items: center;
+    justify-content: center;
+}
+
+.link:hover, .link:active { /* 헤더에 각 페이지로 들어가는 하이퍼링크 div 칸을 마우스로 대거나 클릭할 때의 디자인 설정 */
+    border-collapse: collapse; /* 경계선은 한 줄로 설정하고 */
+    border-bottom: 2px solid RGB(178, 34, 34); /* 아래쪽 경계 색깔을 붉은색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    cursor: pointer; /* 마우스를 대거나 클릭할 때 마우스 커서를 손가락 모양으로 설정한다. */
+}
+
+.gray-screen { /* 푸터에 사용되는 공차 로고 디자인 설정 */
+    display: flex; /* flex 설정을 하고 */
+    padding-top: 10px;
+    width: 300px; /* 가로는 300px로 */
+    height: 90px; /* 세로는 90px로 */
+    background-color: RGB(128, 128, 128); /* 배경 색깔을 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    color: white; /* 글자 색깔을 흰색으로 지정한다. */
+}
+
+.gray-screen > img { /* 푸터에 사용되는 공차 로고 안의 이미지에 관한 디자인 */
+    margin-left: 15px;
+
+    /* 푸터의 첨부 이미지의 가로 길이, 세로 길이를 마우스로 변환시켜도 이미지의 크기가 고정되도록 해준다 */
+    flex: none;
+}
+
+.gray-screen > p { /* 푸터에 사용되는 공차 로고 안의 저작권 글에 관한 디자인 */
+
+    /* 푸터의 저작권 글의 가로 길이, 세로 길이를 마우스로 변환시켜도 글의 크기가 고정되도록 해준다 */
+    flex: none;
+    margin-left: 10px;
+    font-size: 0.9em; /* 글자 크기는 0.9em으로 하고 */
+    font-weight: 200; /* 글자의 진한 강도는 200으로 설정해준다. */
+}
+
+.white-screen { /* 푸터에 사용되는 고객 센터 전화번호와 대표이사님 명함을 담은 div에 관한 디자인 */
+    display: flex; /* flex 설정을 하고 */
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+
+    line-height: 2px; /* 글 간의 줄 간격은 2px로 설정하고 */
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    background-color: RGB(246, 246, 246); /* 배경 색깔을 연한 회색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+    width: 100%; /* 가로는 남은 여백의 가로 길이의 전체로 */
+    height: 100px; /* 세로는 100px로 설정해준다. */
+}
+
+.introduce-brand { /* 메인 페이지의 머리글을 담은 div 디자인 설정 */
+    text-align: right; /* 해당 div 안의 글의 위치는 오른쪽으로 설정한다. */
+
+    /* 첨부한 이미지는 반복 없이 div를 다 덮도록 설정해준다. */
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: flex; /* flex 설정을 하고 */
+    align-items: center; /* 수직 중앙 정렬을 하고 */
+    justify-content: right; /* 오른쪽으로 위치하도록 설정을 해준다. */
+    color: white; /* 글자 색깔을 흰색으로 지정한다. */
+    font-size: 1.3em; /* 글자 크기는 1.3em으로 하고 */
+    font-weight: 450; /* 글자의 진한 강도는 450으로 설정해준다. */
+    width: 100%; /* 가로는 해당 줄의 가로 길이의 전체로 설정해준다. */
+}
+
+.brand-story { /* 메인 페이지의 머리글을 담은 div 안의 영어 글 디자인 설정 */
+    font-size: 2.1em; /* 글자 크기는 2.1em으로 하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정해준다. */
+}
+
+.tea-content { /* 메인 페이지의 공차 카페를 소개하는 div의 디자인 설정 */
+    text-align: center; /* 글들을 중앙에 배치시키고 */
+    white-space: nowrap; /* 글들의 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+    width: 100%; /* 가로는 해당 줄의 가로 길이의 전체로 설정해준다. */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto; /* 세로는 p 텍스트 박스의 세로 길이와 간격의 세로 길이를 합한 길이로 자동 설정해준다. */
+    background-color: RGB(255, 229, 204); /* 배경 색깔을 베이지색과 가깝게 RGB를 설정해서 색상을 지정한다. */
+}
+
+.title { /* 메인 페이지의 공차 카페를 소개하는 div 안의 제목 글 디자인 설정 */
+    font-size: 1.6em; /* 글자 크기는 1.6em으로 하고 */
+    font-weight: 400; /* 글자의 진한 강도는 400으로 설정해준다. */
+}
+
+.promise { /* 공차 카페가 맹세한 공약들을 담는 div 디자인 설정 */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+
+    width: 100%; /* 가로는 해당 줄의 가로 길이의 전체로 설정해준다. */
+    height: auto; /* 세로는 자식 요소의 최대 세로 길이(간격 포함)로 자동 배치해준다. */
+}
+
+.promise-card { /* 공차 카페가 맹세한 각각의 공약을 담는 div 디자인 설정 */
+    text-align: center; /* 글들을 중앙에 배치시키고 */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+    white-space: nowrap; /* 줄바꿈 기능을 없애고 */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+    width: 300px; /* 가로는 300px로 설정해준다. */
+    margin: 30px 20px 5px 20px;
+}
+
+.promise-card > p { /* 공차 카페가 맹세한 각각의 공약을 담는 div 안의 p 텍스트 글 줄 간격 설정 */
+    line-height: 20px; /* 해당 텍스트 박스의 줄 간격을 20px로 설정해준다. */
+}
+
+.brown-color { /* 메인 페이지의 공차 카페가 맹세한 각각의 공약을 담는 div 안의 글들 중 갈색으로 변경하는 글의 디자인 설정 */
+    color: brown /* 글의 색상을 갈색으로 바꿔준다. */
+}
+
+.big-font-size { /* 메인 페이지의 공차 카페가 맹세한 각각의 공약을 담는 div 안의 영어 글씨 크기 설정 */
+    font-size: 2em; /* 글자 크기를 2em으로 설정해준다. */
+}

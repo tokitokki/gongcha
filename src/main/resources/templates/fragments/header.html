@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 각 홈 페이지의 헤더 부분 -->
+<!-- 공차 로고와 각종 링크와 SNS 아이콘을 진열하는 헤더를 만든다. -->
+<header th:fragment="header"> <!-- 헤더 부분의 fragment 이름을 header로 설정한다. -->
+    <!-- 디자인은 th:href 경로에 설정한 index.css 파일 참조 -->
+    <link rel = "stylesheet" th:href="@{/root/resources/stylesheets/index.css}" type = "text/css">
+    <div class="row"> <!-- 이미지와 div 창을 수직 중앙, 수평 중앙으로 배치하면서 한 줄로 정해진 간격으로 진열되도록 설정 -->
+        <!-- 가로, 세로 길이를 90px만큼 설정해서 공차 로고 첨부 -->
+        <img th:src="@{/root/resources/images/gongcha_logo.jfif}" width="90" height="90">
+        <a th:href="@{/main}">
+            <div class="link" onMouseOver="this.innerHTML='공차 소개'" onMouseOut="this.innerHTML='Brand'">Brand</div>
+        </a> <!-- 공차 소개 링크 -->
+        <a th:href="@{/menu/seasonmenu}">
+            <div class="link" onMouseOver="this.innerHTML='메뉴'" onMouseOut="this.innerHTML='Menu'">Menu</div>
+        </a> <!-- 메뉴 조회 링크 -->
+        <a th:href="@{/store/search/79}">
+            <div class="link" onMouseOver="this.innerHTML='매장 조회'" onMouseOut="this.innerHTML='Store'">Store</div>
+        </a> <!-- 매장 검색 링크 -->
+        <a th:href="@{/payment/consumemethod}">
+            <div class="link" onMouseOver="this.innerHTML='결제 수단'" onMouseOut="this.innerHTML='Payment'">Payment</div>
+        </a> <!-- 결제 수단 조회 링크 -->
+        <a th:href="@{/board/event}">
+            <div class="link" onMouseOver="this.innerHTML='게시판'" onMouseOut="this.innerHTML='Board'">Board</div>
+        </a> <!-- 게시판 링크 -->
+        <!-- 페이스북 로고를 첨부하고 그 다음 이미지(카카오톡 로고)의 간격을 20px만큼 오른쪽으로 띄운다.-->
+        <a href="#"><img th:src="@{/root/resources/images/facebook.png}" style="margin-right: 20px;"></a>
+        <!-- 카카오톡 로고를 첨부하고 그 다음 이미지(인스타그램 로고)의 간격을 20px만큼 오른쪽으로 띄운다.-->
+        <a href="#"><img th:src="@{/root/resources/images/kakaotalk.png}" width="47" height="47" style="margin-right: 20px;"></a>
+        <!-- 인스타그램 로고를 첨부한다.-->
+        <a href="#"><img th:src="@{/root/resources/images/instagram.png}"></a>
+    </div>
+</header>
+</html>

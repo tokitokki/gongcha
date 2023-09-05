@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 카페음료 계절 메뉴 소개 페이지 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 디자인은 th:href 경로에 설정한 menu.css 파일과 menudetail.css 참조 -->
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menu.css}" type = "text/css">
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menudetail.css}" type = "text/css">
+    <title th:text="${templateTitle}"></title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+    <div class="menu-type">
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src="@{/menu/resources/images/beverage.png}" width="22" height="22">&nbsp;음료</p>
+        </a>|
+        <a th:href="@{/menu/bingsu}">
+            <p><img th:src="@{/menu/resources/images/bingsu.png}" width="22" height="22">&nbsp;빙수</p>
+        </a>|
+        <a th:href="@{/menu/dessert}">
+            <p><img th:src="@{/menu/resources/images/dessert.png}" width="22" height="22">&nbsp;디저트</p>
+        </a>|
+        <a th:href="@{/menu/mug}">
+            <p><img th:src="@{/menu/resources/images/mug.png}" width="22" height="22">&nbsp;머그잔</p>
+        </a>
+    </div>
+
+    <!-- 디저트 메뉴를 소개해주는 창을 만든다.
+    해당 div 창의 배경은 디저트가 있는 이미지를 첨부한다. -->
+    <div class="introduce-dessert"
+         th:style="'background-image:url('+ @{/menu/resources/images/dessert_background.jpg} +');'" height="250">
+        <p class = "dessert">디저트</p>
+    </div><br>
+    <div class="choice-menu">
+
+        <!-- 선택한 메뉴를 해당 div 좌측에 이미지 파일로 첨부해서 보여준다 -->
+        <img th:src="@{'/menu/resources/images/dessert/' + ${matchDesserts.get(index).getImageFile()}}">
+
+        <!-- 그러고 나서 바로 옆 칸 div에 세로로 순서대로 메뉴 이름, 메뉴 설명, 가격, 메뉴 성분표를 순서대로 표시해준다. -->
+        <div class="choice-menu-content">
+            <h2 class = "typing-menu" th:text="${matchDesserts.get(index).getMenu()}"></h2> <!-- 메뉴 이름과 -->
+            <p th:text="${matchDesserts.get(index).getContent()}"></p> <!-- 메뉴를 설명하는 내용을 순서대로 표시해준다. -->
+            <p class = "centered"> <!-- 그 밑에 가격을 적어서 표시해준다 -->
+                <span th:text="${#numbers.formatInteger(matchDesserts.get(index).getPrice(), 3, 'COMMA') + '원'}" class = "price"></span>
+            </p>
+            <p><b>제품 영양정보</b></p> <!-- 그 밑에는 아래 table로 메뉴 성분표를 표시한다. (줄간격 : 70) -->
+            <table>
+                <tr> <!-- 첫 번째 줄에는 메뉴 이름과 일회제공량, 칼로리, 당류, 단백질, 포화지방 항목을 th로 나타낸다. -->
+                    <td rowspan="4" width="70"> <!-- 해당 칸을 세로로 4줄 합친다. -->
+                        <b>메뉴명</b><br><br> <!-- 그리고 그 칸 안의 내용을 메뉴 이름을 소개하는 항목인 '메뉴명'이라고 표시하고 두 줄 띄운 다음 -->
+                        <span th:text="${matchDesserts.get(index).getMenu()}"></span> <!-- 해당 메뉴 이름을 표시해준다. -->
+                    </td>
+                    <th width="70"><span>일회제공량(ml)</span></th>
+                    <th width="70"><span>칼로리(kcal)</span></th>
+                    <th width="70"><span>당류(g)</span></th>
+                    <th width="70"><span>단백질(g)</span></th>
+                    <th width="70"><span>포화지방(g)</span></th>
+                </tr>
+                <tr> <!-- 두 번째 줄에는 각 칸에 맞게 일회제공량, 칼로리, 당류, 단백질, 포화지방의 양을 표시한다. -->
+                    <td th:text="${matchDesserts.get(index).getAmount()}"></td> <!-- 디저트 1회 제공량 -->
+
+                    <!-- 디저트 칼로리 중에 정수값으로 나타낼 수 있을 때 표시되는 칼로리 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[0]}"
+                        th:if="${(matchDesserts.get(index).getKcal() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 칼로리 중에 정수값으로 나타낼 수 없을 때 표시되는 칼로리 양 -->
+                    <td th:text="${matchDesserts.get(index).getKcal()}"
+                        th:if="${(matchDesserts.get(index).getKcal() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 당류 중에 정수값으로 나타낼 수 있을 때 표시되는 당류 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[1]}"
+                        th:if="${(matchDesserts.get(index).getSugars() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 당류 중에 정수값으로 나타낼 수 없을 때 표시되는 당류 양 -->
+                    <td th:text="${matchDesserts.get(index).getSugars()}"
+                        th:if="${(matchDesserts.get(index).getSugars() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 단백질 중에 정수값으로 나타낼 수 있을 때 표시되는 단백질 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[2]}"
+                        th:if="${(matchDesserts.get(index).getProtein() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 단백질 중에 정수값으로 나타낼 수 없을 때 표시되는 단백질 양 -->
+                    <td th:text="${matchDesserts.get(index).getProtein()}"
+                        th:if="${(matchDesserts.get(index).getProtein() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 포화지방 중에 정수값으로 나타낼 수 있을 때 표시되는 포화지방 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[3]}"
+                        th:if="${(matchDesserts.get(index).getSaturatedFat() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 포화지방 중에 정수값으로 나타낼 수 없을 때 표시되는 포화지방 양 -->
+                    <td th:text="${matchDesserts.get(index).getSaturatedFat()}"
+                        th:if="${(matchDesserts.get(index).getSaturatedFat() * 10) % 10 != 0}"></td>
+                </tr>
+                <tr> <!-- 세 번째 줄에는 나트륨, 탄수화물, 트랜스지방, 지방, 콜레스테롤 항목을 th로 나타낸다. -->
+                    <th width="70"><span>나트륨(mg)</span></th>
+                    <th width="70"><span>탄수화물(g)</span></th>
+                    <th width="70"><span>트랜스지방(g)</span></th>
+                    <th width="70"><span>지방(g)</span></th>
+                    <th width="70"><span>콜레스테롤(mg)</span></th>
+                </tr>
+                <tr>
+                    <!-- 디저트 나트륨 중에 정수값으로 나타낼 수 있을 때 표시되는 나트륨 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[4]}"
+                        th:if="${(matchDesserts.get(index).getNatrium() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 나트륨 중에 정수값으로 나타낼 수 없을 때 표시되는 나트륨 양 -->
+                    <td th:text="${matchDesserts.get(index).getNatrium()}"
+                        th:if="${(matchDesserts.get(index).getNatrium() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 탄수화물 중에 정수값으로 나타낼 수 있을 때 표시되는 탄수화물 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[5]}"
+                        th:if="${(matchDesserts.get(index).getCarbohydrate() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 탄수화물 중에 정수값으로 나타낼 수 없을 때 표시되는 탄수화물 양 -->
+                    <td th:text="${matchDesserts.get(index).getCarbohydrate()}"
+                        th:if="${(matchDesserts.get(index).getCarbohydrate() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 트랜스지방 중에 정수값으로 나타낼 수 있을 때 표시되는 트랜스지방 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[6]}"
+                        th:if="${(matchDesserts.get(index).getTransFat() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 트랜스지방 중에 정수값으로 나타낼 수 없을 때 표시되는 트랜스지방 양 -->
+                    <td th:text="${matchDesserts.get(index).getTransFat()}"
+                        th:if="${(matchDesserts.get(index).getTransFat() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 지방 중에 정수값으로 나타낼 수 있을 때 표시되는 지방 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[7]}"
+                        th:if="${(matchDesserts.get(index).getFat() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 지방 중에 정수값으로 나타낼 수 없을 때 표시되는 지방 양 -->
+                    <td th:text="${matchDesserts.get(index).getFat()}"
+                        th:if="${(matchDesserts.get(index).getFat() * 10) % 10 != 0}"></td>
+
+                    <!-- 디저트 콜레스테롤 중에 정수값으로 나타낼 수 있을 때 표시되는 콜레스테롤 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${roundValues.get(index)[8]}"
+                        th:if="${(matchDesserts.get(index).getCholesterol() * 10) % 10 == 0}"></td>
+
+                    <!-- 디저트 콜레스테롤 중에 정수값으로 나타낼 수 없을 때 표시되는 콜레스테롤 양 -->
+                    <td th:text="${matchDesserts.get(index).getCholesterol()}"
+                        th:if="${(matchDesserts.get(index).getCholesterol() * 10) % 10 != 0}"></td>
+                </tr>
+            </table>
+            <!-- 검색한 알레르기 유발 식품이 있으면 어떤 종류의 식품이 알레르기를 유발할 수 있는지 표시해준다. -->
+            <p th:if="${!matchDesserts.get(index).getAllergyIntroductionFood().equals('')}">
+                <b>알레르기 유발 식품 : </b><span th:text="${matchDesserts.get(index).getAllergyIntroductionFood()}"></span>
+            </p>
+        </div>
+    </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

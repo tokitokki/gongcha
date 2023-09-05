@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 각 홈 페이지의 푸터 부분 -->
+<!-- 저작권 표기("(C)GONGCHA ~ RESERVED")글과 고객센터의 연락처와 대표이사님의 성함을 담는 푸터를 만든다. -->
+<footer th:fragment="footer"> <!-- 푸터 부분의 fragment 이름을 footer로 설정한다. -->
+    <!-- 디자인은 th:href 경로에 설정한 index.css 파일 참조 -->
+    <link rel = "stylesheet" th:href="@{/root/resources/stylesheets/index.css}" type = "text/css">
+    <!-- 이미지와 텍스트 창을 수직 중앙, 수평 중앙으로 배치하면서 한 줄로 정해진 간격으로 진열되도록 설정 -->
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="gray-screen"> <!-- 공차 저작권 표기 div의 배경색을 회색 계열의 배경색으로 설정 -->
+            <!-- 푸터에 사용되는 공차 로고 첨부(가로 길이 63px, 세로 길이 81px로 설정) -->
+            <img th:src="@{/root/resources/images/footer_logo.png}" width="63" height="81">
+            <p>(C)GONGCHA KOREA<br> ALL RIGHTS RESERVED.</p> <!-- 저작권 표기 -->
+        </div>
+        <div class="white-screen"> <!-- 고객센터 연락처와 대표이사 성함을 담는 div의 배경색을 흰색에 가까운 배경색으로 설정 -->
+            <p>고객센터 : 02-779-7758</p> <!-- 고객센터 연락처 -->
+            <p>(주)공차코리아 대표이사 김의열</p> <!-- 대표이사 성함 -->
+        </div>
+    </div>
+</footer>
+</html>

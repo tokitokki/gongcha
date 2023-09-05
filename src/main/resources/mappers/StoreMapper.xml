@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 검색한 지역과 구&군을 대입받아 해당 위치의 가맹점 조회 -->
+<mapper namespace="mydogcherry.kr.gongcha.mappers.IStoreMapper">
+
+    <!-- 5개의 지역 (대구, 대전, 광주, 부산 ,울산) 전체의 가맹점을 조회하는 쿼리문 생성 -->
+    <select id="searchWholeStore" resultType="mydogcherry.kr.gongcha.entities.store.StoreEntity">
+        SELECT `index`      AS `index`,
+               `store_name` AS `storeName`,
+               `area`       AS `area`,
+               `gu`         AS `gu`,
+               `address`    AS `address`,
+               `map_image`  AS `mapImage`
+        FROM `store`.`gongcha_store`
+        ORDER BY `store_name`
+    </select>
+</mapper>

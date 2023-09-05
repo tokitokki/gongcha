@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 공지사항 글 중 하나를 클릭했을 때 링크되는 페이지 -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 디자인은 th:href 경로에 설정한 board.css 파일 참조 -->
+  <link rel = "stylesheet" th:href="@{/board/resources/stylesheets/board.css}" type = "text/css">
+  <title>공지사항 글</title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+  <!-- 공차 게시판을 소개하는 머리글을 담은 div를 이미지를 추가해서 만든다. -->
+  <div class="introduce-board" th:style="'background-image:url('+ @{/board/resources/images/board_notice.png} +');'">
+    <p style="margin: 110px 0 110px 20px;">
+      <span class="brand-story">BOARD</span><br>공차의 다양한 소식을 확인해 보세요
+    </p>
+  </div>
+  <div class="notice-detail"> <!-- 공지사항 글 세부 페이지의 제목 div -->
+    <p class="notice-detail-title" th:text="${noticeEntity.getTitle()}"></p><br> <!-- 공지사항 글 제목 -->
+    <!-- 공지사항 글 순번이 1 또는 2일 때, 해당 공지사항에 관련된 이미지를 첨부해서 상세한 내용을 알려준다. -->
+    <div th:if="${noticeEntity.getIndex() == 1 || noticeEntity.getIndex() == 2}" style="margin-top: -30px;">
+
+      <!-- '공차 일부 메뉴 가격 인상 안내' 공지사항의 세부적인 내용을 보여주는 이미지 -->
+      <img th:if="${noticeEntity.getIndex() == 1}" th:src="@{/board/resources/images/gongcha_increase_price.jpg}">
+
+      <!-- '공차코리아 멤버십 회원가입 연령 변경 안내' 공지사항의 세부적인 내용을 보여주는 이미지 -->
+      <img th:if="${noticeEntity.getIndex() == 2}" th:src="@{/board/resources/images/gongcha_register_change_order.jpg}">
+    </div>
+
+    <!-- 공지사항 글 순번이 3일 때, 해당 공지사항에 관련된 내용을 텍스트로 작성해서 담은 div (개인정보 처리방침 글) -->
+    <div th:if="${noticeEntity.getIndex() == 3}" style="margin-top: -45px;">
+      <p>[공차 개인정보 처리방침 변경]<br>
+        공차 멤버십 ‘개인정보 처리방침’이 변경되어 아래와 같이 안내해 드립니다.<br><br>
+        ※ 수집한 개인정보의 위탁<br>
+        - 변경 사유 : 일부 멤버십 서비스의 개인정보 위탁처리 기관 변경<br>
+        - 현재 내용<br>
+        회사는 멤버십 서비스 제공을 위해 아래와 같이 개인정보를 위탁하고 있으며,
+        위탁계약 시 개인정보가 안전하게 관리될 수 있도록 필요한 사항을 규정하고 있습니다.<br>
+        회사의 개인정보 위탁처리 기관 및 위탁업무 내용은 아래와 같습니다.
+      </p>
+      <table>
+        <tr>
+          <th>구분</th>
+          <th>제공받는 자</th>
+          <th>위탁 업무 내용</th>
+        </tr>
+        <tr>
+          <td>멤버십 앱 회원 서비스</td>
+          <td>한국정보통신(주)</td>
+          <td>
+            1. 서비스 제공을 위한 시스템 개발 및 운영<br>
+            2. 이메일/휴대폰 문자 대행 발송<br>
+            3. 휴대폰 본인 인증 서비스사를 통한 본인 인증 서비스
+          </td>
+        </tr>
+      </table><br>
+      <p>
+        - 변경 내용<br>
+        회사는 멤버십 서비스 제공을 위해 아래와 같이 개인정보를 위탁하고 있으며,
+        위탁계약 시 개인정보가 안전하게 관리될 수 있도록 필요한 사항을 규정하고 있습니다.<br>
+        회사의 개인정보 위탁처리 기관 및 위탁업무 내용은 아래와 같습니다.
+      </p>
+      <table>
+        <tr>
+          <th>구분</th>
+          <th>제공받는 자</th>
+          <th>위탁 업무 내용</th>
+        </tr>
+        <tr>
+          <td>멤버십 앱 회원 서비스</td>
+          <td>한국정보통신(주)</td>
+          <td>
+            1. 서비스 제공을 위한 시스템 개발 및 운영<br>
+            2. 이메일/휴대폰 문자 대행 발송<br>
+            3. 휴대폰 본인 인증 서비스사를 통한 본인 인증 서비스
+          </td>
+        </tr>
+        <tr>
+          <td>멤버십 앱 회원 서비스</td>
+          <td>엠포플러스(주)</td>
+          <td>알림톡 발송</td>
+        </tr>
+      </table><br>
+      <p>
+        ※ 본 방침은 2022년 5월 6일부터 적용됩니다.<br>
+        ※ 개정된 약관 사항에 동의하지 않을 경우 회원탈퇴를 함으로써 이용을 해지할 수 있으며,<br>
+        회원이 개정된 약관의 효력 발생일 이후 서비스를 계속 이용할 경우에는 개정된 약관에 동의한 것으로 간주합니다.<br><br>
+        앞으로도 더 나은 서비스를 제공하기 위해 노력하겠습니다.<br>
+        감사합니다.
+      </p>
+    </div>
+  </div>
+  <a th:href="@{/board/notice}" style="text-decoration: none; color: white;">
+    <p class="click-redirect">목록으로</p> <!-- 클릭하면 메인 공지사항 글로 돌아가는 하이퍼링크를 만든다. -->
+  </a>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

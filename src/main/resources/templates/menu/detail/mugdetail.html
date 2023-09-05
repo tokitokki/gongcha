@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 카페음료 계절 메뉴 소개 페이지 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 디자인은 th:href 경로에 설정한 menu.css 파일과 menudetail.css 참조 -->
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menu.css}" type = "text/css">
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menudetail.css}" type = "text/css">
+    <title th:text="${templateTitle}"></title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+    <div class="menu-type"> <!-- 각 종류의 메뉴 조회 페이지로 들어갈 수 있는 링크 창을 만들어준다. -->
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src="@{/menu/resources/images/beverage.png}" width="22" height="22">&nbsp;음료</p>
+        </a>|
+        <a th:href="@{/menu/bingsu}">
+            <p><img th:src="@{/menu/resources/images/bingsu.png}" width="22" height="22">&nbsp;빙수</p>
+        </a>|
+        <a th:href="@{/menu/dessert}">
+            <p><img th:src="@{/menu/resources/images/dessert.png}" width="22" height="22">&nbsp;디저트</p>
+        </a>|
+        <a th:href="@{/menu/mug}">
+            <p><img th:src="@{/menu/resources/images/mug.png}" width="22" height="22">&nbsp;머그잔</p>
+        </a>
+    </div>
+
+    <!-- 머그잔 메뉴를 소개해주는 창을 만든다.
+    해당 div 창의 배경은 머그잔이 있는 이미지를 첨부한다. -->
+    <div class="introduce-mug"
+        th:style="'background-image:url('+ @{/menu/resources/images/mug_background.jfif} +');'" height="250">
+        <p class = "mug">머그잔</p>
+    </div><br>
+    <div class="choice-menu">
+
+        <!-- 선택한 메뉴를 해당 div 좌측에 이미지 파일로 첨부해서 보여준다 -->
+        <img th:src="@{'/menu/resources/images/mug/' + ${matchMugs.get(index).getImageFile()}}">
+
+        <!-- 그러고 나서 바로 옆 칸 div에 세로로 순서대로 메뉴 이름, 메뉴 설명, 가격, 메뉴 성분표를 순서대로 표시해준다. -->
+        <div class="choice-menu-content">
+            <h2 class = "typing-menu" th:text="${matchMugs.get(index).getMenu()}"></h2> <!-- 메뉴 이름과 -->
+            <p th:text="${matchMugs.get(index).getContent()}"></p> <!-- 메뉴를 설명하는 내용을 순서대로 표시하고 -->
+            <p class = "centered"> <!-- 그 밑에 가격을 적어서 표시해준다 -->
+                <span class="basic">기본&nbsp;</span> <!-- 머그잔의 기본 가격을 소개하기 위해 '기본'이라고 글자를 적고 -->
+                <span th:text="${#numbers.formatInteger(matchMugs.get(index).getPrice(), 3, 'COMMA') + '원'}" class = "price"></span> <!-- 그 옆에 가격을 적는다. -->
+            </p>
+
+            <!-- 그 밑에는 해당 머그잔의 용량을 표시한다. -->
+            <p class = "centered">용량 :&nbsp;<span th:text="${matchMugs.get(index).getVolume() + 'ml'}"></span></p>
+        </div>
+    </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

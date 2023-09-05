@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 카페음료 계절 메뉴 소개 페이지 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 디자인은 th:href 경로에 설정한 menu.css 파일과 menudetail.css 참조 -->
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menu.css}" type = "text/css">
+    <link rel = "stylesheet" th:href="@{/menu/resources/stylesheets/menudetail.css}" type = "text/css">
+    <title th:text="${templateTitle}"></title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+    <div class="menu-type"> <!-- 각 종류의 메뉴 조회 페이지로 들어갈 수 있는 링크 창을 만들어준다. -->
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src="@{/menu/resources/images/beverage.png}" width="22" height="22">&nbsp;음료</p>
+        </a>|
+        <a th:href="@{/menu/bingsu}">
+            <p><img th:src="@{/menu/resources/images/bingsu.png}" width="22" height="22">&nbsp;빙수</p>
+        </a>|
+        <a th:href="@{/menu/dessert}">
+            <p><img th:src="@{/menu/resources/images/dessert.png}" width="22" height="22">&nbsp;디저트</p>
+        </a>|
+        <a th:href="@{/menu/mug}">
+            <p><img th:src="@{/menu/resources/images/mug.png}" width="22" height="22">&nbsp;머그잔</p>
+        </a>
+    </div>
+
+    <!-- 카페음료 중에 어떤 종류의 카페음료를 조회하는지 알려주는 창을 만든다.
+    해당 div 창의 배경은 음료수가 진열되어 있는 이미지를 첨부한다. -->
+    <div class="introduce-beverage"
+         th:style="'background-image:url('+ @{/menu/resources/images/beverage_background.PNG} +');'" height="250">
+        <p>
+            <span class = "beverage">음료</span>
+            <br>시즌 메뉴
+        </p>
+    </div>
+    <hr> <!-- 평행선을 그어주고 -->
+    <div class="menu-align"> <!-- 카페음료 종류 중 각종 종류 메뉴 소개 창으로 들어갈 수 있는 창을 만들어준다. -->
+        <a th:href="@{/menu/seasonmenu}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;시즌 메뉴</p>
+        </a>
+        <a th:href="@{/menu/bestcombination}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;베스트 콤비네이션</p>
+        </a>
+        <a th:href="@{/menu/originaltea}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;오리지널 티</p>
+        </a>
+        <a th:href="@{/menu/milktea}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;밀크 티</p>
+        </a>
+    </div>
+    <div class="menu-align">
+        <a th:href="@{/menu/jewel}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;쥬얼리</p>
+        </a>
+        <a th:href="@{/menu/fruitmix}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;과일믹스</p>
+        </a>
+        <a th:href="@{/menu/smoothie}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;스무디</p>
+        </a>
+        <a th:href="@{/menu/coffee}">
+            <p><img th:src = "@{/menu/resources/images/button_icon.png}">&nbsp;커피</p>
+        </a>
+    </div>
+    <hr> <!-- 다 만들어주고 창 밑에 평행선을 한번 더 그어준다. -->
+    <div class="choice-menu">
+        <!-- 선택한 메뉴를 해당 div 좌측에 이미지 파일로 첨부해서 보여준다 -->
+        <!-- 카페음료 메뉴 순번이 1번부터 4번까지인 경우의 메뉴는 아래 링크 폴더의 이미지를 첨부한다. -->
+        <img th:if="${iceLargeBeverage.getIndex() >= 1 && iceLargeBeverage.getIndex() <= 4}"
+             th:src="@{'/menu/resources/images/jeju_season/' + ${iceLargeBeverage.getImageFile()}}">
+
+        <!-- 카페음료 메뉴 순번이 5번부터 8번까지인 경우의 메뉴는 아래 링크 폴더의 이미지를 첨부한다. -->
+        <img th:if="${iceLargeBeverage.getIndex() >= 5 && iceLargeBeverage.getIndex() <= 8}"
+             th:src="@{'/menu/resources/images/golden_pearl/' + ${iceLargeBeverage.getImageFile()}}">
+
+        <!-- 카페음료 메뉴 순번이 9번부터 17번까지인 경우의 메뉴는 아래 링크 폴더의 이미지를 첨부한다. -->
+        <img th:if="${iceLargeBeverage.getIndex() >= 9 && iceLargeBeverage.getIndex() <= 17}"
+             th:src="@{'/menu/resources/images/spring_season/' + ${iceLargeBeverage.getImageFile()}}">
+
+        <!-- 그러고 나서 바로 옆 칸 div에 세로로 순서대로 메뉴 이름, 메뉴 설명, 가격, 메뉴 성분표를 순서대로 표시해준다. -->
+        <div class="choice-menu-content">
+            <h2 class = "typing-menu" th:text="${iceLargeBeverage.getMenu()}"></h2> <!-- 메뉴 이름과 -->
+            <p th:text="${iceLargeBeverage.getContent()}"></p> <!-- 메뉴를 설명하는 내용을 순서대로 표시해준다. -->
+            <p class = "centered"> <!-- 그 밑에 Large 가격을 적어서 표시해준다 -->
+                <b>Large&nbsp;&nbsp;</b> <span th:text="${#numbers.formatInteger(iceLargeBeverage.getPrice(), 3, 'COMMA') + '원'}" class = "price"></span>
+            </p>
+            <p><b>제품 영양정보</b></p> <!-- 그 밑에는 아래 table로 메뉴 성분표를 표시한다. (줄간격 : 70) -->
+            <table>
+                <tr> <!-- 첫 번째 줄에 각각 표시하려는 항목 이름부터 먼저 th로 표시한다. -->
+                    <th width="70" rowspan = "2"><span>메뉴명</span></th> <!-- 해당 칸을 세로로 2줄 합친다. -->
+                    <th width="70"><span>일회제공량(ml)</span></th>
+                    <th width="70"><span>칼로리(kcal)</span></th>
+                    <th width="70"><span>당류(g)</span></th>
+                    <th width="70"><span>단백질(g)</span></th>
+                    <th width="70"><span>포화지방(g)</span></th>
+                    <th width="70"><span>나트륨(mg)</span></th>
+                    <th width="70"><span>카페인(mg)</span></th>
+                </tr>
+                <tr> <!-- 두 번째 줄에는 Large 사이즈 약자인 L을 양의 항목별로 각각 td로 표시해준다. -->
+                    <td>L</td> <!-- 일회제공량 Large -->
+                    <td>L</td> <!-- 칼로리 Large -->
+                    <td>L</td> <!-- 당류 Large -->
+                    <td>L</td> <!-- 단백질 Large -->
+                    <td>L</td> <!-- 포화지방 Large -->
+                    <td>L</td> <!-- 나트륨 Large -->
+                    <td>L</td> <!-- 카페인 Large -->
+                </tr>
+                <tr> <!-- 세 번째 줄에는 해당하는 냉음료 메뉴 이름 또는 냉음료에 해당하는 양을 각각 td로 표시해준다 -->
+                    <td th:text="${iceLargeBeverage.getMenu()}"></td> <!-- 메뉴 이름 (냉음료만 있으니까 ice를 안 붙이고 그냥 표기한다.) -->
+                    <td th:text="${iceLargeBeverage.getAmount()}"></td> <!-- 냉음료 Large 1회 제공량 -->
+                    <td th:text="${iceLargeBeverage.getKcal()}"></td> <!-- 냉음료 Large 1회 칼로리 -->
+                    <td th:text="${iceLargeBeverage.getSugars()}"></td> <!-- 냉음료 Large 1회 당류 -->
+                    <td th:text="${iceLargeBeverage.getProtein()}"></td> <!-- 냉음료 Large 1회 단백질 -->
+                    <!-- 냉음료 Large 포화지방 중에 정수값으로 나타낼 수 있을 때 표시되는 포화지방 양 (정수 단위로 변환한 값을 불러들인다.) -->
+                    <td th:text="${round}" th:if="${(iceLargeBeverage.getSaturatedFat() * 10) % 10 == 0}"></td>
+                    <!-- 냉음료 Large 포화지방 중에 정수값으로 나타낼 수 없을 때 표시되는 포화지방 양 -->
+                    <td th:text="${iceLargeBeverage.getSaturatedFat()}" th:if="${(iceLargeBeverage.getSaturatedFat() * 10) % 10 != 0}"></td>
+                    <td th:text="${iceLargeBeverage.getNatrium()}"></td> <!-- 냉음료 Large 나트륨 -->
+                    <td th:text="${iceLargeBeverage.getCaffeine()}"></td> <!-- 냉음료 Large 카페인 -->
+                </tr>
+            </table>
+            <!-- 검색한 알레르기 유발 식품이 있으면 어떤 종류의 식품이 알레르기를 유발할 수 있는지 표시해준다. -->
+            <p th:if="${!iceLargeBeverage.getAllergyIntroductionFood().equals('없음')}"><b>알레르기 유발 식품 : </b><span th:text="${iceLargeBeverage.getAllergyIntroductionFood()}"></span></p>
+        </div>
+    </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 결제 수단을 소개하는 페이지 -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- 디자인은 th:href 경로에 설정한 payment.css 파일 참조 -->
+  <link rel = "stylesheet" th:href="@{/payment/resources/stylesheets/payment.css}" type = "text/css">
+  <title>결제 수단</title>
+</head>
+<th:header th:replace="~{/fragments/header.html :: header}"></th:header> <!-- 헤더 페이지를 가져온다. -->
+<body>
+  <!-- 공차 지불 수단을 소개하는 머리글을 담은 div를 이미지를 추가해서 만든다. -->
+  <div class="introduce-brand" th:style="'background-image:url('+ @{/payment/resources/images/benefit_background.jpg} +');'">
+    <p style="margin: 110px 20px 110px 0;">
+      <span class="brand-story">PAYMENT</span><br>공차를 특별한 결제 혜택과 만나보세요
+    </p>
+  </div>
+  <!-- 현금, 신용카드, 체크카드 이외의 결제 수단을 소개하는 div를 만든다. -->
+  <p class="payment-introduce">※ 현금, 신용카드, 체크카드 이외의 결제 수단</p>
+  <div class="introduce-gift-voucher"> <!-- 문화상품권으로 결제하는 방법을 담은 div (마우스를 대거나 클릭하면은 화면이 펼쳐진다.) -->
+    <p style="padding-top: -10px;">문화상품권</p> <!-- 결제 수단 종류 (문화상품권) -->
+    <div class="detail-payment-introduce"> <!-- 해당 결제 수단 로고와 해당 결제 수단의 특징을 담은 div -->
+      <img th:src="@{'/payment/resources/images/' + ${giftVoucher.getLogoImage()}}"> <!-- 해당 결제 수단 로고를 담은 이미지 첨부 -->
+      <div class="detail-payment-content">
+        <p class="detail-payment-content-title" th:text="${giftVoucher.getTitle()}"></p> <!-- 결제 수단 종류글을 다른 디자인으로 해서 다시 보여주고 -->
+        <p th:text="${'- ' + giftVoucher.getFirstContent()}"></p> <!-- 해당 결제 수단의 첫 번째 특징 -->
+        <p th:text="${'- ' + giftVoucher.getSecondContent()}"></p> <!-- 해당 결제 수단의 두 번째 특징 -->
+      </div>
+    </div>
+    <div class="introduce-payment-use"> <!-- 해당 결제 수단을 이용하는 방법에 대한 글을 담은 div -->
+      <p style="font-weight: bold; font-size: 1.4em; margin-left: 10px;">이용 안내</p>
+      <p class="introduce-payment-use-content">
+        [지류 문화 상품권]<br>
+        - 공차 멤버십 APP 스탬프 적립 가능<br>
+        - T 멤버십 할인 이용 가능<br>
+        - 키오스크, 배달 APP, 공차 멤버십 APP 이용 시 주문 불가<br><br>
+        [모바일 문화 상품권]<br>
+        - 공차 멤버십 APP 스탬프 적립 가능<br>
+        - T 멤버십 할인 이용 가능<br>
+        - 배달 APP, 공차 멤버십 APP 이용 시 주문 불가<br><br>
+        ※ '(주)한국문화진흥'에서 발행한 지류/모바일 상품권만 이용가능합니다.<br>
+        &nbsp;&nbsp;이 외 온누리상품권, 도서상품권, 해피머니상품권은 이용 불가합니다.
+      </p>
+    </div>
+    <p class="caution" style="font-size: 0.8em; margin-top: -3px;"> <!-- 홈페이지의 가로 길이를 많이 줄였을 때 나타나는 경고창 -->
+      <img th:src="@{/payment/resources/images/caution.png}"> <!-- 홈페이지의 가로 길이를 많이 줄이면 주의하라는 모양의 로고의 이미지와 -->
+      가로 길이를 더 늘려주세요!
+    </p> <!-- 가로 길이를 더 늘려달라는 내용이 나온다. -->
+  </div>
+  <div class="introduce-kakao-pay"> <!-- 카카오페이로 결제하는 방법을 담은 div (마우스를 대거나 클릭하면은 화면이 펼쳐진다.) -->
+    <p style="padding-top: -10px;">카카오페이</p> <!-- 결제 수단 종류 (카카오페이) -->
+    <div class="detail-payment-introduce"> <!-- 해당 결제 수단 로고와 해당 결제 수단의 특징을 담은 div -->
+      <img th:src="@{'/payment/resources/images/' + ${kakaoPay.getLogoImage()}}"> <!-- 해당 결제 수단 로고를 담은 이미지 첨부 -->
+      <div class="detail-payment-content" style="margin-top: 15px; margin-bottom: 6px;">
+        <p class="detail-payment-content-title" th:text="${kakaoPay.getTitle()}"></p> <!-- 결제 수단 종류글을 다른 디자인으로 해서 다시 보여주고 -->
+        <p th:text="${'- ' + kakaoPay.getFirstContent()}"></p> <!-- 해당 결제 수단의 첫 번째 특징 -->
+        <p th:text="${'- ' + kakaoPay.getSecondContent()}"></p> <!-- 해당 결제 수단의 두 번째 특징 -->
+      </div>
+    </div>
+    <div class="introduce-payment-use content-padding"> <!-- 해당 결제 수단을 이용하는 방법에 대한 글을 담은 div -->
+      <p class="introduce-payment-use-title">이용 안내</p>
+      <p class="introduce-payment-use-content" style="padding-top: 17px;">
+        - 공차 멤버십 APP 스탬프 적립 가능<br>
+        - T 멤버십 할인 이용 가능<br>
+        - 배달 APP 이용 시 주문 불가<br><br>
+      </p>
+    </div>
+    <p class="caution" style="font-size: 0.8em; margin-top: -3px;"> <!-- 홈페이지의 가로 길이를 많이 줄였을 때 나타나는 경고창 -->
+      <img th:src="@{/payment/resources/images/caution.png}"> <!-- 홈페이지의 가로 길이를 많이 줄이면 주의하라는 모양의 로고의 이미지와 -->
+      가로 길이를 더 늘려주세요!
+    </p> <!-- 가로 길이를 더 늘려달라는 내용이 나온다. -->
+  </div>
+  <div class="introduce-payco" style="margin-bottom: 15px;"> <!-- 페이코로 결제하는 방법을 담은 div (마우스를 대거나 클릭하면은 화면이 펼쳐진다.) -->
+    <p>페이코</p> <!-- 결제 수단 종류 (페이코) -->
+    <div class="detail-payment-introduce"> <!-- 해당 결제 수단 로고와 해당 결제 수단의 특징을 담은 div -->
+      <img th:src="@{'/payment/resources/images/' + ${payco.getLogoImage()}}"> <!-- 해당 결제 수단 로고를 담은 이미지 첨부 -->
+      <div class="detail-payment-content" style="margin-top: 15px; margin-bottom: 6px;">
+        <p class="detail-payment-content-title" th:text="${payco.getTitle()}"></p> <!-- 결제 수단 종류글을 다른 디자인으로 해서 다시 보여주고 -->
+        <p th:text="${'- ' + payco.getFirstContent()}"></p> <!-- 해당 결제 수단의 첫 번째 특징 -->
+        <p th:text="${'- ' + payco.getSecondContent()}"></p> <!-- 해당 결제 수단의 두 번째 특징 -->
+      </div>
+    </div>
+    <div class="introduce-payment-use content-padding"> <!-- 해당 결제 수단을 이용하는 방법에 대한 글을 담은 div -->
+      <p class="introduce-payment-use-title">이용 안내</p>
+      <p class="introduce-payment-use-content" style="padding-top: 17px;">
+        - 공차 멤버십 APP 스탬프 적립 가능<br>
+        - T 멤버십 할인 이용 가능<br>
+        - 키오스크, 배달 APP 이용 시 주문 불가<br><br>
+      </p>
+    </div>
+    <p class="caution" style="font-size: 0.8em; margin-top: -3px;"> <!-- 홈페이지의 가로 길이를 많이 줄였을 때 나타나는 경고창 -->
+      <img th:src="@{/payment/resources/images/caution.png}"> <!-- 홈페이지의 가로 길이를 많이 줄이면 주의하라는 모양의 로고의 이미지와 -->
+      가로 길이를 더 늘려주세요!
+    </p> <!-- 가로 길이를 더 늘려달라는 내용이 나온다. -->
+    </div>
+  </div>
+</body>
+<th:footer th:replace="~{/fragments/footer.html :: footer}"></th:footer> <!-- 푸터 페이지를 가져온다. -->
+</html>

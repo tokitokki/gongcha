@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 메뉴 관련 쿼리를 담는 Mapper -->
+<mapper namespace="mydogcherry.kr.gongcha.mappers.IMenuMapper">
+
+    <!-- 카페음료 종류 내용을 입력받아 해당 종류의 카페음료 메뉴를 조회하는 쿼리문 생성 -->
+    <select id="selectBeverageType" resultType="mydogcherry.kr.gongcha.entities.menu.BeverageEntity">
+        SELECT `index`         AS `index`,
+               `menu`          AS `menu`,
+               `type`          AS `type`,
+               `price`         AS `price`,
+               `amount`        AS `amount`,
+               `kcal`          AS `kcal`,
+               `sugars`        AS `sugars`,
+               `protein`       AS `protein`,
+               `saturated_fat` AS `saturatedFat`,
+               `natrium`       AS `natrium`,
+               `caffeine`      AS `caffeine`,
+               `content`       AS `content`,
+               `image_file`    AS `imageFile`
+        FROM `menu`.`beverages`
+        WHERE `type` = #{type}
+    </select>
+
+    <!-- 카페음료가 냉음료이고 Large 사이즈일 때 해당 메뉴를 조회하는 쿼리문 생성 -->
+    <select id="selectBeverageIceLarge"
+            resultType="mydogcherry.kr.gongcha.entities.menu.BeverageEntity">
+        SELECT `index`         AS `index`,
+               `menu`          AS `menu`,
+               `type`          AS `type`,
+               `price`         AS `price`,
+               `amount`        AS `amount`,
+               `kcal`          AS `kcal`,
+               `sugars`        AS `sugars`,
+               `protein`       AS `protein`,
+               `saturated_fat` AS `saturatedFat`,
+               `natrium`       AS `natrium`,
+               `caffeine`      AS `caffeine`,
+               `content`       AS `content`,
+               `image_file`    AS `imageFile`
+        FROM `menu`.`beverages`
+        WHERE `index` = #{index}
+    </select>
+
+    <!-- 카페음료가 냉음료이고 Jumbo 사이즈일 때 해당 메뉴를 조회하는 쿼리문 생성 -->
+    <select id="selectBeverageIceJumbo" resultType="mydogcherry.kr.gongcha.entities.menu.BeverageEntity">
+        SELECT `beverage`.`index`         AS `index`,
+               `beverage`.`menu`          AS `menu`,
+               `beverage`.`type`          AS `type`,
+               `jumboIce`.`price`         AS `price`,
+               `jumboIce`.`amount`        AS `amount`,
+               `jumboIce`.`kcal`          AS `kcal`,
+               `jumboIce`.`sugars`        AS `sugars`,
+               `jumboIce`.`protein`       AS `protein`,
+               `jumboIce`.`saturated_fat` AS `saturatedFat`,
+               `jumboIce`.`natrium`       AS `natrium`,
+               `jumboIce`.`caffeine`      AS `caffeine`,
+               `beverage`.`content`       AS `content`,
+               `beverage`.`image_file`    AS `imageFile`
+        FROM `menu`.`beverages_jumbo_ice` AS `jumboIce`
+                 LEFT JOIN `menu`.`beverages` AS `beverage`
+                 ON `beverage`.`index` = `jumboIce`.`beverage_index`
+        WHERE `beverage`.`index` = #{index}
+    </select>
+
+    <!-- 카페음료가 온음료이고 Large 사이즈일 때 해당 메뉴를 조회하는 쿼리문 생성 -->
+    <select id="selectBeverageHotLarge" resultType="mydogcherry.kr.gongcha.entities.menu.BeverageEntity">
+        SELECT `beverage`.`index`         AS `index`,
+               `beverage`.`menu`          AS `menu`,
+               `beverage`.`type`          AS `type`,
+               `beverage`.`price`         AS `price`,
+               `largeHot`.`amount`        AS `amount`,
+               `largeHot`.`kcal`          AS `kcal`,
+               `largeHot`.`sugars`        AS `sugars`,
+               `largeHot`.`protein`       AS `protein`,
+               `largeHot`.`saturated_fat` AS `saturatedFat`,
+               `largeHot`.`natrium`       AS `natrium`,
+               `largeHot`.`caffeine`      AS `caffeine`,
+               `beverage`.`content`       AS `content`,
+               `beverage`.`image_file`    AS `imageFile`
+        FROM `menu`.`beverages_large_hot` AS `largeHot`
+                 LEFT JOIN `menu`.`beverages` AS `beverage`
+                 ON `beverage`.`index` = `largeHot`.`beverage_index`
+        WHERE `beverage`.`index` = #{index}
+    </select>
+
+    <!-- 카페음료가 온음료이고 Jumbo 사이즈일 때 해당 메뉴를 조회하는 쿼리문 생성 -->
+    <select id="selectBeverageHotJumbo" resultType="mydogcherry.kr.gongcha.entities.menu.BeverageEntity">
+        SELECT `beverage`.`index`         AS `index`,
+               `beverage`.`menu`          AS `menu`,
+               `beverage`.`type`          AS `type`,
+               `jumboHot`.`price`         AS `price`,
+               `jumboHot`.`amount`        AS `amount`,
+               `jumboHot`.`kcal`          AS `kcal`,
+               `jumboHot`.`sugars`        AS `sugars`,
+               `jumboHot`.`protein`       AS `protein`,
+               `jumboHot`.`saturated_fat` AS `saturatedFat`,
+               `jumboHot`.`natrium`       AS `natrium`,
+               `jumboHot`.`caffeine`      AS `caffeine`,
+               `beverage`.`content`       AS `content`,
+               `beverage`.`image_file`    AS `imageFile`
+        FROM `menu`.`beverages_jumbo_hot` AS `jumboHot`
+                 LEFT JOIN `menu`.`beverages` AS `beverage`
+                 ON `beverage`.`index` = `jumboHot`.`beverage_index`
+        WHERE `beverage`.`index` = #{index}
+    </select>
+
+    <!-- 카페음료 순번을 입력받아 해당 카페음료의 알레르기 유발 식품 검사 결과를 조회 -->
+    <select id="checkBeverageAllergy" resultType="string">
+        SELECT IFNULL(`allergy_introduction_food`, '없음')
+        FROM `menu`.`beverages_check`
+        WHERE `index` = #{index}
+    </select>
+
+    <!-- 빙수 메뉴를 조회하는 쿼리 생성 -->
+    <select id="bingsu" resultType="mydogcherry.kr.gongcha.entities.menu.BingsuEntity">
+        SELECT `index`         AS `index`,
+               `menu`          AS `menu`,
+               `price`         AS `price`,
+               `amount`        AS `amount`,
+               `kcal`          AS `kcal`,
+               `sugars`        AS `sugars`,
+               `protein`       AS `protein`,
+               `saturated_fat` AS `saturatedFat`,
+               `natrium`       AS `natrium`,
+               `content`       AS `content`,
+               `image_file`    AS `imageFile`
+        FROM `menu`.`bingsues`
+    </select>
+
+    <!-- 디저트 메뉴를 조회하는 쿼리 생성 -->
+    <select id="dessert" resultType="mydogcherry.kr.gongcha.entities.menu.DessertEntity">
+        SELECT `index`         AS `index`,
+               `menu`          AS `menu`,
+               `price`         AS `price`,
+               `amount`        AS `amount`,
+               `kcal`          AS `kcal`,
+               `sugars`        AS `sugars`,
+               `protein`       AS `protein`,
+               `saturated_fat` AS `saturatedFat`,
+               `natrium`       AS `natrium`,
+               `carbohydrate`  AS `carbohydrate`,
+               `trans_fat`     AS `transFat`,
+               `fat`           AS `fat`,
+               `cholesterol`   AS `cholesterol`,
+               `content`       AS `content`,
+               `image_file`    AS `imageFile`
+        FROM `menu`.`desserts`
+    </select>
+
+    <!-- 머그잔 메뉴를 조회하는 쿼리 생성 -->
+    <select id="mug" resultType="mydogcherry.kr.gongcha.entities.menu.MugEntity">
+        SELECT `index`      AS `index`,
+               `menu`       AS `menu`,
+               `price`      AS `price`,
+               `volume`     AS `volume`,
+               `content`    AS `content`,
+               `image_file` AS `imageFile`
+        FROM `menu`.`mugs`
+    </select>
+</mapper>

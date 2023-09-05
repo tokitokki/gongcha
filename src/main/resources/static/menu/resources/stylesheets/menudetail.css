@@ -1,0 +1,80 @@
+/* html, CSS 파일의 간격 조정(margin, padding 등)은 기호에 알맞게 설정하였다. */
+@charset "UTF-8"; /* 메뉴를 클릭했을 때 자세한 내용에 관한 페이지 CSS 디자인 파일 */
+
+.choice-menu { /* 클릭한 메뉴에 대한 이미지와 소개글을 보여주는 div 디자인 */
+    width: 100%; /* 가로 길이를 해당 칸의 전체로 잡고 */
+    height: 540px; /* 세로 길이를 540px로 설정한다. */
+    background-color: RGBA(255, 222, 173, 0.4); /* 배경 색깔을 베이지색과 가깝게 RGB를 설정하고 60% 투명하게 한다. */
+    display: flex; /* flex 설정을 하고 */
+
+    /* 텍스트 글 외에 다른 자식 요소들은 수직, 수평 중앙 정렬을 해준다. */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* 줄바꿈 설정을 없애고. */
+    overflow: hidden; /* 원래 줄바꿈되는 글자들은 안 보이는 효과로 바꿔준다. */
+}
+
+.choice-menu > img {/* 클릭한 메뉴에 대한 이미지와 소개글을 보여주는 div 안의 이미지 디자인 */
+    display: flex; /* flex 설정을 하고 */
+    float: left; /* 왼쪽 구석부터 해당 부모 div의 자식 div들 순서대로 위치하도록 설정을 해준다. */
+    width: 374px; /* 가로 길이를 374px로 설정하고 */
+    height: 440px; /* 세로 길이를 440px로 설정한다. */
+    margin-left: 15px;
+}
+
+.choice-menu-content { /* 클릭한 메뉴에 대한 이미지와 소개글을 보여주는 div 안의 이미지 옆의 div 디자인 */
+    margin-left: 30px;
+    display: flex; /* flex 설정을 하고 */
+    float: left; /* 왼쪽 구석부터 해당 부모 div의 자식 div들 순서대로 위치하도록 설정을 해준다. (해당 div는 순서가 두번째이므로 이미지 옆에 배치된다.) */
+    /* 수직, 수평 중앙 정렬을 해주고. */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* 자식 내용 순서대로 세로로 배치한다. */
+}
+
+.typing-menu { /* 이미지와 소개글을 보여주는 div 안 메뉴 제목에 관한 디자인 */
+    font-size: 1.7em; /* 글자 크기를 1.7em으로 설정하고 */
+    font-weight: 470; /* 글자의 진한 강도를 470으로 설정한다. */
+}
+
+table, tr, th, td { /* 영양 성분표 table, table 안의 tr, th, td에 관한 디자인 */
+    border-collapse: collapse; /* 경계선은 한 줄로 설정하고 */
+    text-align: center; /* 표 안의 글들은 수평 중앙으로 정렬한다. */
+}
+
+table { /* 영양 성분표 table에 관한 디자인 */
+    /* table 맨 위쪽과 맨 아래쪽의 경계를 검정색으로 2px 두께만큼 설정한다. */
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+tr, th, td { /* 영양 성분표 table 안의 tr, th, td에 관한 디자인 */
+    border: 1px solid RGB(220, 220, 220); /* table에 경계를 지정하지 않은 모든 부븐의 경계를 회색 계열의 색으로 1px 두께만큼 설정한다. */
+    font-size: 1em; /* table 안의 글자 크기는 1em으로 설정한다. */
+    padding: 5px;
+}
+
+th {
+    font-weight: 300; /* th칸 안의 글자의 진한 강도는 300으로 설정해준다. */
+}
+
+td {
+    font-weight: 200; /* td칸 안의 글자의 진한 강도는 200으로 설정해준다. */
+}
+
+.centered { /* 해당 칸의 내용을 flex를 써서 수직, 수평 중앙 정렬을 해주는 CSS */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.price { /* 가격을 표시하는 텍스트에 관한 디자인 */
+    color: darkred; /* 글자 색깔은 진한 빨강으로 설정한다. */
+    font-size: 1.35em; /* 글자 크기는 1.35em으로 설정하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정한다. */
+}
+
+.basic { /* 머그잔 메뉴 표시 글 앞에 '기본'이라는 텍스트에 관한 디자인 */
+    font-size: 1.35em; /* 글자 크기는 1.35em으로 설정하고 */
+    font-weight: 550; /* 글자의 진한 강도는 550으로 설정한다. */
+}
